@@ -1,0 +1,17 @@
+#story {
+	padding-top: 100px;
+	width: 500px;
+	margin: auto;
+	font-family: "Garamond";
+
+}
+
+#control {
+	display: block;
+	margin: 20px auto;
+	width: 500px;
+}
+
+.locationNames {
+	font-weight: bolder;
+}
