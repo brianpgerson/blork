@@ -1,6 +1,10 @@
 
 function Model(){
-	this.inventory = [];
+	this.inventory = {
+		store: [],
+		weight: 0,
+		maxWeight: 100
+	};
 
 	//============================
 	// 		All Locations
@@ -11,7 +15,7 @@ function Model(){
 		name: "study",
 		visits: 0,
 		currentRoom: 0,
-		description: "I find myself in the study. Worn wood panels thin enough to smell the adhesive on the undersides cover the walls, and the low light from a corner lamp reflects with a wet sheen. There's a desk in the middle of the room, coated by what looks like a year's worth of dust, and a painting of a forlorn admiral hangs on the wall. <br /><br /> There is a door to the kitchen to the north, and a door the bedroom to the south.",
+		description: "I find myself in the study. Worn wood panels thin enough to smell the adhesive on the undersides cover the walls, and the low light from a corner lamp reflects with a wet sheen. There's a desk in the middle of the room, coated by what looks like a year's worth of dust, and a painting of a forlorn admiral hangs on the wall. <p>There is a door to the kitchen to the north, and a door the bedroom to the south.</p>",
 		exits: [{
 			type: "door",
 			direction: "north",
