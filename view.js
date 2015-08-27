@@ -21,3 +21,11 @@ View.prototype.checkForMax = function(){
 View.prototype.message = function(message){
 	document.getElementById("story").innerHTML+= "<p class='message'>" + message + "</p>";
 }
+
+View.prototype.xout = function(){
+	return document.getElementById("xout");
+}
+
+View.prototype.hide = function(){
+	document.getElementById("rules").setAttribute("class", "hidden");
+}

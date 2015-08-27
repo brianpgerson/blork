@@ -5,6 +5,8 @@ function Controller(model, view){
 
 Controller.prototype.bindEventListeners = function(){
 	this.view.control().addEventListener("keypress", this.checkForEnter.bind(this), false);
+	this.view.xout().addEventListener("click", this.view.hide, false);
+
 }
 
 Controller.prototype.startingLocation = function(){

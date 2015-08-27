@@ -24,3 +24,22 @@ h1 {
 .message {
 	font-style: italic;
 }
+
+#rules {
+	font-size: .8em;
+	position: fixed;
+	top: 150px;
+	left: 20px;
+	width: 200px;
+}
+
+#xout {
+	list-style: none;
+	float: right;
+	margin-bottom: 5px;
+	cursor: crosshair;
+}
+
+.hidden {
+	display: none;
+}
