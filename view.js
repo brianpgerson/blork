@@ -26,6 +26,14 @@ View.prototype.xout = function(){
 	return document.getElementById("xout");
 }
 
-View.prototype.hide = function(){
-	document.getElementById("rules").setAttribute("class", "hidden");
+View.prototype.expander = function(){
+	return document.getElementById("rulesExpand");
+}
+
+View.prototype.hide = function(id){
+	document.getElementById(id).setAttribute("class", "hidden");
+}
+
+View.prototype.show = function(id){
+	document.getElementById(id).removeAttribute("class", "hidden");
 }

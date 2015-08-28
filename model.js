@@ -51,6 +51,14 @@ function Model(){
 
 		}, 
 		{
+			name: "key",
+			description: "It's a rusty key.",
+			status: "available",
+			weight: 1,
+			commands: ["examine", "take", "use"]
+
+		}, 
+		{
 			name: "paper",
 			description: "It's a piece of paper with letterheading of the initials 'BG'.",
 			status: "available",

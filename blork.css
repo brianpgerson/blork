@@ -33,11 +33,23 @@ h1 {
 	width: 200px;
 }
 
+#rulesExpand {
+	font-size: 1.2em;
+	position: fixed;
+	top: 150px;
+	left: 20px;
+	cursor: pointer;
+	list-style: none;
+}
+
 #xout {
 	list-style: none;
+	font-size: .6em;
+	padding: 1px;
 	float: right;
 	margin-bottom: 5px;
-	cursor: crosshair;
+	cursor: pointer;
+	border: solid red 1px;
 }
 
 .hidden {
