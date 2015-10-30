@@ -3,7 +3,8 @@ function Model(){
 	this.inventory = {
 		store: [],
 		weight: 0,
-		maxWeight: 100
+		maxWeight: 100,
+		commands: ["examine"]
 	};
 
 	//============================

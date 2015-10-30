@@ -38,69 +38,78 @@ Controller.prototype.parse = function(string){
 	var room = this.getCurrentRoom();
 	var objectInfo = this.getObjectInfo(room);
 	var commandObject = this.getCommandObject(room, objectInfo[1], objectInfo[0], splitAndSmall);
-	if (commandObject === undefined){this.view.message(this.erroneousObject()); 
-		return;}
-		var availableCommands = this.getAvailableCommands(commandObject);
-		this.view.checkForMax();
-
-		if(availableCommands.length > 0){ 
-			for (i=0; i<availableCommands.length; i++){
-				if (commandVerb == availableCommands[i]){
-					eval(this[commandVerb].bind(this))(commandObject);
-					console.log(objectInfo[0], availableCommands, commandObject, room, commandVerb);
-					return;
-				} 	
-			}
-		} 
-		this.view.message(this.erroneousCommand());
+	if (commandObject[0] === undefined){
+		this.view.message(this.erroneousObject()); 
+		return;
 	}
+	var availableCommands = this.getAvailableCommands(commandObject);
+	this.view.checkForMax();
 
-	Controller.prototype.getCurrentRoom = function(){
-		for (i=0;i<this.model.locations.length;i++){
-			if (this.model.locations[i].currentRoom == 1){
-				return this.model.locations[i];
-			}
+	if(availableCommands.length > 0){ 
+		for (i=0; i<availableCommands.length; i++){
+			if (commandVerb == availableCommands[i]){
+				eval(this[commandVerb].bind(this))(commandObject[0]); //blork
+				console.log(objectInfo[0], availableCommands, commandObject, room, commandVerb);
+				return;
+			} 	
+		}
+	} 
+	this.view.message(this.erroneousCommand());
+}
+
+Controller.prototype.getCurrentRoom = function(){
+	for (i=0;i<this.model.locations.length;i++){
+		if (this.model.locations[i].currentRoom == 1){
+			return this.model.locations[i];
 		}
 	}
+}
 
-	Controller.prototype.getObjectInfo = function(room){
-		var objectNames = [];
-		var objectObjects = [];
-		for (i=0; i<room.objects.length; i++){
-			objectNames.push(room.objects[i].name);		
-			objectObjects.push(room.objects[i]);		
-		}
-		return [objectNames, objectObjects];
+Controller.prototype.getObjectInfo = function(room){
+	var objectNames = [];
+	var objectObjects = [];
+	for (i=0; i<room.objects.length; i++){
+		objectNames.push(room.objects[i].name);		
+		objectObjects.push(room.objects[i]);		
 	}
+	return [objectNames, objectObjects];
+}
 
-	Controller.prototype.getCommandObject= function(room, objects, names, input){
-		var commandObject = [];
+Controller.prototype.getCommandObject= function(room, objects, names, input){
+	var commandObject = [];
 		for (i=0; i<objects.length; i++){
 			for(j=0; j<input.length; j++) {
 				if (names[i] == input[j]){
 					commandObject.push(objects[i]);
+				} else if (input[j] == "inventory") {
+					debugger;
+					commandObject.push(this.view.inventory);
+					return commandObject;
 				}
 			} 
 		} 
-		return commandObject;
-	} 
+	return commandObject;
+} 
 
-	Controller.prototype.getAvailableCommands = function(commandObject){
-		var availableCommands = [];
-		if (commandObject == []){
-			return [];
-		} else if (commandObject.length = 1){
-			for (i=0; i<commandObject.commands.length; i++){
-				availableCommands.push(commandObject.commands[i])
-			} else {
-				for (i=0; i<commandObject.length; i++) {
-					
-				}BLORK
-			}
+Controller.prototype.getAvailableCommands = function(commandObject){
+	var availableCommands = [];
+	if (commandObject[0] == undefined){
+		return [];
+	} else if (commandObject.length == 1){
+		for (i=0; i<commandObject[0].commands.length; i++){
+			availableCommands.push(commandObject[0].commands[i])
+		} 
 	} 
-
+	else {
+		for (i=0; i<commandObject.length; i++) {
+			console.log("BLORK!")
+		}
+	}
 	return availableCommands;
-}
+} 
+
+
+
 
 
 Controller.prototype.makeLowerCase = function(string){
@@ -117,6 +126,9 @@ Controller.prototype.makeLowerCase = function(string){
 //==============================
 
 Controller.prototype.examine = function(commandObject){
+	if (commandObject == "inventory") {
+		this.view.examine(this.view.inventory.store, "Inventory:")
+	}
 	this.view.examine(commandObject.description, commandObject.name);
 }
 
